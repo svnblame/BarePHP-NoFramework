@@ -8,6 +8,6 @@ $heading = 'My Notes';
 
 $currentUserId = 2;
 
-$notes = $db->query("SELECT * FROM notes WHERE user_id = $currentUserId")->fetchAll();
+$notes = $db->query("SELECT * FROM notes WHERE user_id = $currentUserId")->get();
 
 require 'views/notes.view.php';
