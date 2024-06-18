@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 function route($uri, $routes) {
     if (array_key_exists($uri, $routes)) {
         require $routes[$uri];
@@ -22,9 +24,14 @@ function urlIs($value): bool
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-function abort($code = 404): void
+#[NoReturn] function abort($code = 404): void
 {
     http_response_code($code);
     require "controllers/{$code}.php";
     die();
+}
+
+function authorize($condition, $status = Response::FORBIDDEN): void
+{
+    if (! $condition) { abort($status); }
 }
