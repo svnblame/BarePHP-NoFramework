@@ -9,7 +9,7 @@
         <p class="mb-4">
             <a href="/notes" class="text-blue-600 hover:underline">Back to Notes</a>
         </p>
-        <p><?= $note['body'] ?></p>
+        <p><?= htmlspecialchars($note['body']) ?></p>
     </div>
 </main>
 
