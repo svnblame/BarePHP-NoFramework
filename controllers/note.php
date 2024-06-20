@@ -1,10 +1,10 @@
 <?php
 
-$config = require 'config.php';
-$db = new Database($config['database'], 'root', '');
+$dbConfig = require __DIR__ . '/../config/database.php';
+$db = new Database($dbConfig, 'root', '');
 
 $heading = 'Note';
-$currentUserId = 2;
+$currentUserId = $dbConfig['test_user_id'];
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',
