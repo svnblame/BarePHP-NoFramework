@@ -1,10 +1,10 @@
 <?php
 
-$dbConfig = require __DIR__ . '/../config/database.php';
+$dbConfig = require __DIR__ . '/../../config/database.php';
 
 $db = new Database($dbConfig, 'root', '');
 
-require __DIR__ . '/../helpers/Validator.php';
+require __DIR__ . '/../../helpers/Validator.php';
 
 $heading = 'Create Note';
 
@@ -25,4 +25,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-require __DIR__ . '/../views/note_create.view.php';
+require __DIR__ . '/../../views/notes/create.view.php';
