@@ -4,18 +4,16 @@ $dbConfig = require __DIR__ . '/../config/database.php';
 
 $db = new Database($dbConfig, 'root', '');
 
+require __DIR__ . '/../helpers/Validator.php';
+
 $heading = 'Create Note';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $errors = [];
 
-    if (isset($_POST['body']) && 0 === strlen($_POST['body'])) {
-        $errors['body'] = 'A body is required';
-    }
-
-    if (isset($_POST['body']) && strlen($_POST['body']) > $dbConfig['note_body_char_limit']) {
-        $errors['body'] = 'The body of your note is too long. Maximum number of characters is ' . $dbConfig['note_body_char_limit'] . '.';
+    if (! Validator::string($_POST['body'], $dbConfig['note_body_char_min'], $dbConfig['note_body_char_max'])) {
+        $errors['body'] = "The body must contain between {$dbConfig['note_body_char_min']} and {$dbConfig['note_body_char_max']} characters";
     }
 
     if (empty($errors)) {
