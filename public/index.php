@@ -1,9 +1,15 @@
 <?php
 
-require_once __DIR__ . "/helpers/utils.php";
-require_once __DIR__ . "/helpers/Database.php";
-require_once __DIR__ . "/helpers/Response.php";
-require __DIR__ . '/router.php';
+const BASE_PATH = __DIR__ . '/../';
+
+require BASE_PATH . 'Core/utils.php';
+
+spl_autoload_register(function ($class) {
+    require base_path("Core/{$class}.php");q
+    q
+});
+
+require base_path('Core/router.php');
 
 /*$user_id = strip_tags($_GET['id']);
 
