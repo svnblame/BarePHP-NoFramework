@@ -3,7 +3,6 @@
 $dbConfig = require __DIR__ . '/../../config/database.php';
 $db = new Database($dbConfig, 'root', '');
 
-$heading = 'Note';
 $currentUserId = $dbConfig['test_user_id'];
 
 $note = $db->query(
@@ -14,4 +13,7 @@ $note = $db->query(
 
 authorize($note['user_id'] === $currentUserId);
 
-require 'views/notes/show.view.php';
+view('notes/show.view.php', [
+    'heading' => 'Note',
+    'note' => $note,
+]);

@@ -2,7 +2,8 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-function route($uri, $routes) {
+function route($uri, $routes): void
+{
     if (array_key_exists($uri, $routes)) {
         require $routes[$uri];
     } else {
@@ -34,4 +35,15 @@ function urlIs($value): bool
 function authorize($condition, $status = Response::FORBIDDEN): void
 {
     if (! $condition) { abort($status); }
+}
+
+function base_path($path = ''): string
+{
+    return BASE_PATH . $path;
+}
+
+function view(string $path, array $attributes = []): void
+{
+    extract($attributes);
+    require base_path('views/' . $path);
 }
