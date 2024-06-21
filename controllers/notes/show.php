@@ -1,6 +1,6 @@
 <?php
 
-$dbConfig = require __DIR__ . '/../config/database.php';
+$dbConfig = require __DIR__ . '/../../config/database.php';
 $db = new Database($dbConfig, 'root', '');
 
 $heading = 'Note';
@@ -14,4 +14,4 @@ $note = $db->query(
 
 authorize($note['user_id'] === $currentUserId);
 
-require 'views/note.view.php';
+require 'views/notes/show.view.php';
