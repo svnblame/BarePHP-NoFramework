@@ -1,5 +1,8 @@
 <?php
 
+use Core\Database;
+use Core\Validator;
+
 $dbConfig = require __DIR__ . '/../../config/database.php';
 
 $currentUserId = $dbConfig['test_user_id'];
