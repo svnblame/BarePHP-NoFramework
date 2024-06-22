@@ -1,6 +1,7 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
+use Core\Response;
 
 function route($uri, $routes): void
 {

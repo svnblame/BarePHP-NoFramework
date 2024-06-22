@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use PDOStatement;
+use PDO;
+
 class Database
 {
     public PDO $connection;
