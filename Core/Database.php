@@ -11,7 +11,7 @@ class Database
 
     protected PDOStatement $statement;
 
-    public function __construct(array $config, string $username = 'root', string $password = '')
+    public function __construct(array $config, string $username = '', string $password = '')
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';');
 

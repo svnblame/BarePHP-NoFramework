@@ -4,7 +4,7 @@ use Core\Database;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 
-$db = new Database($dbConfig, 'root', '');
+$db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
 $currentUserId = $dbConfig['test_user_id'];
 
