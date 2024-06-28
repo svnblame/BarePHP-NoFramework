@@ -7,7 +7,7 @@ $dbConfig = require __DIR__ . '/../../config/database.php';
 
 $currentUserId = $dbConfig['test_user_id'];
 
-$db = new Database($dbConfig, 'root', '');
+$db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
 $errors = [];
 
