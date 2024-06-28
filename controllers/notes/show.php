@@ -3,9 +3,9 @@
 use Core\Database;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
-$db = new Database($dbConfig, 'root', '');
+$db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
-$currentUserId = $dbConfig['test_user_id'];
+$currentUserId = (int) $dbConfig['test_user_id'];
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',
