@@ -2,6 +2,7 @@
     require(__DIR__ . '/../partials/head.php');
     require(__DIR__ . '/../partials/nav.php');
     require(__DIR__ . '/../partials/banner.php');
+    $disabled = $_ENV['APP_ENV'] === 'production';
 ?>
 
 <main>
@@ -19,10 +20,11 @@
             <?php else : ?>
             <p>You do not have any notes to display</p>
             <?php endif; ?>
-
-        <p class="mt-6">
-            <a href="/note/create" class="text-blue-600 hover:underline">Create Note</a>
-        </p>
+        <?php if (! $disabled) : ?>
+            <p class="mt-6">
+                <a href="/note/create" class="text-blue-600 hover:underline">Create Note</a>
+            </p>
+        <?php endif; ?>
     </div>
 </main>
 
