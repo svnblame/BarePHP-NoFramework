@@ -5,7 +5,7 @@ use Core\Validator;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 
-$currentUserId = $dbConfig['test_user_id'];
+$currentUserId = (int) $dbConfig['test_user_id'];
 
 $db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && ! $disabled) {
         $db->query("INSERT INTO notes (body, user_id) VALUES (:body, :user_id)",
             [
                 'body' => $_POST['body'],
-                'user_id' => $dbConfig['test_user_id']
+                'user_id' => $currentUserId,
             ]);
 
         unset($_POST['body']);
