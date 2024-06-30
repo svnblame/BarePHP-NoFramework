@@ -1,9 +1,9 @@
 <?php
 
-namespace Core;
+namespace KTS\src\Core;
 
-use PDOStatement;
 use PDO;
+use PDOStatement;
 
 class Database
 {
