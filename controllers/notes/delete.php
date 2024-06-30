@@ -10,9 +10,7 @@ $db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
 $disabled = $_ENV['APP_ENV'] === 'production';
 
-$errors = [];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (! $disabled) {
     $note = $db->query('select user_id from notes where id = :id', ['id' => $_POST['id']])->get();
 
     $ownerId = $note[0]['user_id'];
@@ -20,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     authorize($ownerId === $currentUserId);
 
     $db->query('delete from notes where id = :id', [':id' => $_POST['id']]);
-
-    header('Location: /notes');
-    exit();
 }
+
+header('Location: /notes');
+exit();
