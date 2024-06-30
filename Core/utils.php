@@ -1,8 +1,9 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
-use Core\Response;
+use KTS\src\Core\Response;
 
+/** DEPRECATING
 function route($uri, $routes): void
 {
     if (array_key_exists($uri, $routes)) {
@@ -10,7 +11,7 @@ function route($uri, $routes): void
     } else {
         abort(); // 404 Not Found
     }
-}
+}*/
 
 function dump($value, $die = false): void
 {
@@ -26,7 +27,7 @@ function urlIs($value): bool
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-#[NoReturn] function abort($code = 404): void
+#[NoReturn] function abort(int $code = 404): void
 {
     http_response_code($code);
     view("{$code}.view.php", ['heading' => Response::getMessage($code)]);

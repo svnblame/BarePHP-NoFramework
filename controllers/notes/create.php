@@ -1,7 +1,7 @@
 <?php
 
-use Core\Database;
-use Core\Validator;
+use KTS\src\Core\Database;
+use KTS\src\Core\Validator;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 

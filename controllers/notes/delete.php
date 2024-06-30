@@ -1,6 +1,6 @@
 <?php
 
-use Core\Database;
+use KTS\src\Core\Database;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 

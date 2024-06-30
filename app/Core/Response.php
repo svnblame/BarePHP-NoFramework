@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace KTS\src\Core;
 
 class Response
 {

@@ -1,6 +1,8 @@
 <?php
 
-use Core\Database;
+use KTS\src\Core\Database;
+
+require __DIR__ . '/../../vendor/autoload.php';
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 
