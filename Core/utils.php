@@ -1,5 +1,6 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
 use KTS\src\Core\Response;
 
 /** DEPRECATING
@@ -24,6 +25,13 @@ function dump($value, $die = false): void
 function urlIs($value): bool
 {
     return $_SERVER['REQUEST_URI'] === $value;
+}
+
+#[NoReturn] function abort(int $code = 404): void
+{
+    http_response_code($code);
+    view("{$code}.view.php", ['heading' => Response::getMessage($code)]);
+    die();
 }
 
 function authorize($condition, $status = Response::FORBIDDEN): void
