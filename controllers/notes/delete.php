@@ -4,9 +4,9 @@ use KTS\src\Core\Database;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
 
-$currentUserId = (int) $dbConfig['test_user_id'];
-
 $db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
+
+$currentUserId = (int) $dbConfig['test_user_id'];
 
 $disabled = $_ENV['APP_ENV'] === 'production';
 

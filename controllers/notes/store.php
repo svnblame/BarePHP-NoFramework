@@ -4,11 +4,9 @@ use KTS\src\Core\Database;
 use KTS\src\Core\Validator;
 
 $dbConfig = require __DIR__ . '/../../config/database.php';
-
-$currentUserId = (int)$dbConfig['test_user_id'];
-
 $db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
+$currentUserId = (int)$dbConfig['test_user_id'];
 $bodyCharMin = $dbConfig['note_body_char_min'];
 $bodyCharMax = $dbConfig['note_body_char_max'];
 
