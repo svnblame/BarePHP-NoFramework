@@ -20,7 +20,7 @@ $errors = [];
 
 if (! ($_ENV['APP_ENV'] === 'production')) {
 
-    if (!Validator::string($_POST['body'], $bodyCharMin, $bodyCharMax)) {
+    if (! Validator::string($_POST['body'], $bodyCharMin, $bodyCharMax)) {
         $errors['body'] = "The body must contain between {$bodyCharMin} and {$bodyCharMax} characters";
 
         view('notes/create.view.php', [
