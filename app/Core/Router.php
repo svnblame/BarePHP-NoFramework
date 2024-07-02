@@ -52,7 +52,7 @@ class Router
     #[NoReturn] protected function abort($code = 404): void
     {
         http_response_code($code);
-        view("{$code}.view.php", ['heading' => Response::getMessage($code)]);
+        view("errors/{$code}.view.php", ['heading' => Response::getMessage($code)]);
         die();
     }
 }

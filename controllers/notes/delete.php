@@ -1,12 +1,17 @@
 <?php
 
-use KTS\src\Core\Database;
+use KTS\src\Core\App;
 
-$dbConfig = require __DIR__ . '/../../config/database.php';
+try {
+    $db = App::resolve('Core\Database');
+} catch (Exception $e) {
+    error_log(__FILE__ . ':' . __LINE__ . ' **Exception: ' . $e->getMessage());
+    abort(503);
+}
+
+$dbConfig = $db::config();
 
 $currentUserId = (int) $dbConfig['test_user_id'];
-
-$db = new Database($dbConfig, $dbConfig['user'], $dbConfig['pass']);
 
 $disabled = $_ENV['APP_ENV'] === 'production';
 

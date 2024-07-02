@@ -17,6 +17,9 @@ class Response
     const NOT_FOUND = 404;
     const NOT_FOUND_MSG = "Not Found";
 
+    const SERVICE_UNAVAILABLE = 503;
+    const SERVICE_UNAVAILABLE_MSG = "Service Unavailable";
+
     public static function getMessage(int $code): string
     {
         return match ($code) {
@@ -24,6 +27,7 @@ class Response
             self::NOT_FOUND => self::NOT_FOUND_MSG,
             self::UNAUTHORIZED => self::UNAUTHORIZED_MSG,
             self::FORBIDDEN => self::FORBIDDEN_MSG,
+            self::SERVICE_UNAVAILABLE => self::SERVICE_UNAVAILABLE_MSG,
             default => "Unknown error",
         };
     }
