@@ -1,16 +1,12 @@
 <?php
 
-use Dotenv\Dotenv;
 use KTS\src\Core\Router;
-
-require __DIR__ . '/../vendor/autoload.php';
 
 const BASE_PATH = __DIR__ . '/../';
 
-require BASE_PATH . 'Core/utils.php';
+require BASE_PATH . 'app/Core/utils.php';
 
-$dotenv = Dotenv::createImmutable(BASE_PATH);
-$dotenv->load();
+require base_path('bootstrap.php');
 
 $router = new Router();
 
