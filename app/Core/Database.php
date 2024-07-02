@@ -11,6 +11,8 @@ class Database
 
     protected PDOStatement $statement;
 
+    protected static array $config = [];
+
     public function __construct(array $config, string $username = '', string $password = '')
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';');
@@ -18,6 +20,13 @@ class Database
         $this->connection = new PDO($dsn, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
+
+        $this->setConfig($config);
+    }
+
+    public static function config(): array
+    {
+        return static::$config;
     }
 
     public function query(string $query, array $params = []): Database
@@ -46,5 +55,10 @@ class Database
         if (! $result) abort();
 
         return $result;
+    }
+
+    private function setConfig(array $config): void
+    {
+        self::$config = $config;
     }
 }

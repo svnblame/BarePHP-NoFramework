@@ -3,16 +3,6 @@
 use JetBrains\PhpStorm\NoReturn;
 use KTS\src\Core\Response;
 
-/** DEPRECATING
-function route($uri, $routes): void
-{
-    if (array_key_exists($uri, $routes)) {
-        require base_path($routes[$uri]);
-    } else {
-        abort(); // 404 Not Found
-    }
-}*/
-
 function dump($value, $die = false): void
 {
     echo '<pre>';
@@ -30,7 +20,7 @@ function urlIs($value): bool
 #[NoReturn] function abort(int $code = 404): void
 {
     http_response_code($code);
-    view("{$code}.view.php", ['heading' => Response::getMessage($code)]);
+    view("errors/{$code}.view.php", ['heading' => Response::getMessage($code)]);
     die();
 }
 
@@ -42,6 +32,11 @@ function authorize($condition, $status = Response::FORBIDDEN): void
 function base_path($path = ''): string
 {
     return BASE_PATH . $path;
+}
+
+function view_path($path = ''): string
+{
+    return BASE_PATH . '/views/' . ($path ? $path : '');
 }
 
 function view(string $path, array $attributes = []): void
