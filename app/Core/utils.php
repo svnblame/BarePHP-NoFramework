@@ -36,7 +36,7 @@ function base_path($path = ''): string
 
 function view_path($path = ''): string
 {
-    return BASE_PATH . '/views/' . ($path ? $path : '');
+    return BASE_PATH . '/views/' . ($path ?: '');
 }
 
 function view(string $path, array $attributes = []): void

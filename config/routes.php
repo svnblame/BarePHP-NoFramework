@@ -9,6 +9,10 @@ $router->get('/', 'controllers/index.php');
 $router->get('/about', 'controllers/about.php');
 $router->get('/contact', 'controllers/contact.php');
 
+// User Resources
+$router->get('/register', 'controllers/registration/create.php');
+$router->post('/register', 'controllers/registration/store.php');
+
 // Note Resources
 $router->get('/notes', 'controllers/notes/index.php');
 $router->get('/note', 'controllers/notes/show.php');

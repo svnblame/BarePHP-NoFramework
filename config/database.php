@@ -10,4 +10,6 @@ return [
     'test_user_id' => $_ENV['DB_TEST_USER_ID'],
     'note_body_char_max' => $_ENV['DB_NOTE_BODY_CHAR_MAX'],
     'note_body_char_min' => $_ENV['DB_NOTE_BODY_CHAR_MIN'],
+    'password_char_max' => $_ENV['DB_PASSWORD_CHAR_MAX'],
+    'password_char_min' => $_ENV['DB_PASSWORD_CHAR_MIN'],
 ];
