@@ -3,8 +3,10 @@
 use KTS\src\Core\App;
 use KTS\src\Core\Validator;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = trim(strip_tags(htmlspecialchars($_POST['email'])));
+$password = trim(strip_tags(htmlspecialchars($_POST['password'])));
+$firstName = trim(strip_tags(htmlspecialchars($_POST['first-name'])));
+$lastName = trim(strip_tags(htmlspecialchars($_POST['last-name'])));
 
 // validate form inputs
 $errors = [];
@@ -17,6 +19,14 @@ if (! Validator::email($email)) {
 
 if (! Validator::string($password, $dbConfig['password_char_min'], $dbConfig['password_char_max'])) {
     $errors['password'] = "Password must be between {$dbConfig['password_char_min']} and {$dbConfig['password_char_max']} characters";
+}
+
+if (! Validator::string($firstName, $dbConfig['name_char_min'], $dbConfig['name_char_max'])) {
+    $errors['first-name'] = "First name must be between {$dbConfig['name_char_min']} and {$dbConfig['name_char_max']} characters";
+}
+
+if (! Validator::string($lastName, $dbConfig['name_char_min'], $dbConfig['name_char_max'])) {
+    $errors['last-name'] = "Last name must be between {$dbConfig['name_char_min']} and {$dbConfig['name_char_max']} characters";
 }
 
 if (! empty($errors)) {
@@ -38,9 +48,11 @@ if ($result['cnt']) {
     exit();
 } else {
     // If User not exist, create new User
-    $db->query('insert into users (email, password) values (:email, :password)', [
+    $db->query('insert into users (email, password, first_name, last_name) values (:email, :password, :first_name, :last_name)', [
         'email' => $email,
-        'password' => $password,
+        'password' => password_hash($password, PASSWORD_BCRYPT),
+        'first_name' => $firstName,
+        'last_name' => $lastName,
     ]);
 
     // @todo Refactor to use PDO::lastInsertId()
@@ -51,11 +63,13 @@ if ($result['cnt']) {
         'logged_in' => true,
         'user_id' => $user_id['id'],
         'email' => $email,
+        'first_name' => $firstName,
+        'last_name' => $lastName
     ];
 
     // redirect to Notes page
-    view('notes/index.view.php', [
-        'heading' => 'My Notes',
+    view('index.view.php', [
+        'heading' => 'Home',
         'notes', [],
     ]);
     exit();
