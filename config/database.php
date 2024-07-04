@@ -12,4 +12,6 @@ return [
     'note_body_char_min' => $_ENV['DB_NOTE_BODY_CHAR_MIN'],
     'password_char_max' => $_ENV['DB_PASSWORD_CHAR_MAX'],
     'password_char_min' => $_ENV['DB_PASSWORD_CHAR_MIN'],
+    'name_char_max' => $_ENV['DB_NAME_CHAR_MAX'],
+    'name_char_min' => $_ENV['DB_NAME_CHAR_MIN'],
 ];
