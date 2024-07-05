@@ -8,10 +8,10 @@ $password = trim(strip_tags(htmlspecialchars($_POST['password'])));
 $firstName = trim(strip_tags(htmlspecialchars($_POST['first-name'])));
 $lastName = trim(strip_tags(htmlspecialchars($_POST['last-name'])));
 
+$dbConfig = require(base_path('/config/database.php'));
+
 // validate form inputs
 $errors = [];
-
-$dbConfig = require(base_path('/config/database.php'));
 
 if (! Validator::email($email)) {
     $errors['email'] = 'Email address is invalid';
@@ -39,13 +39,8 @@ $db = App::resolve('Core\Database');
 $result = $db->query('select count(`id`) as cnt from users where email = :email', ['email' => $email])->find();
 
 if ($result['cnt']) {
-    // @todo Temp... Will redirect to /login after that route is built
     $errors['email'] = 'Email address is already in use';
-    view('index.view.php', [
-        'heading' => 'Home',
-        'errors' => $errors,
-    ]);
-    exit();
+    view('registration/create.view.php', ['errors' => $errors]);
 } else {
     // If User not exist, create new User
     $db->query('insert into users (email, password, first_name, last_name) values (:email, :password, :first_name, :last_name)', [
@@ -58,20 +53,18 @@ if ($result['cnt']) {
     // @todo Refactor to use PDO::lastInsertId()
     $user_id = $db->query('select id from users where email = :email', ['email' => $email])->find();
 
-    // flag that the User has logged in
-    $_SESSION['user'] = [
-        'logged_in' => true,
-        'user_id' => $user_id['id'],
+    $user = [
+        'userId' => $user_id['id'],
         'email' => $email,
         'first_name' => $firstName,
-        'last_name' => $lastName
+        'last_name' => $lastName,
     ];
 
-    // redirect to Notes page
-    view('index.view.php', [
-        'heading' => 'Home',
-        'notes', [],
-    ]);
+    // Log in the User
+    login($user);
+
+    // redirect to Home page
+    header('Location: /');
     exit();
 }
 

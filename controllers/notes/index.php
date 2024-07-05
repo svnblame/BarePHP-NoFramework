@@ -13,7 +13,7 @@ try {
 
 $dbConfig = $db::config();
 
-$currentUserId = (int) $dbConfig['test_user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $notes = $db->query("SELECT * FROM notes WHERE user_id = $currentUserId")->get();
 

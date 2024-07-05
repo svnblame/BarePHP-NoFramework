@@ -15,7 +15,7 @@ try {
 
 $dbConfig = $db::config();
 
-$currentUserId = (int) $dbConfig['test_user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',

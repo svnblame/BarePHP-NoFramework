@@ -1,7 +1,7 @@
 <?php
-    require(__DIR__ . '/../partials/head.php');
-    require(__DIR__ . '/../partials/nav.php');
-    require(__DIR__ . '/../partials/banner.php');
+    require(__DIR__ . '/../partials/head.view.php');
+    require(__DIR__ . '/../partials/nav.view.php');
+    require(__DIR__ . '/../partials/banner.view.php');
     $disabled = $_ENV['APP_ENV'] === 'production';
 ?>
 
@@ -28,4 +28,4 @@
     </div>
 </main>
 
-<?php require(__DIR__ . '/../partials/foot.php'); ?>
+<?php require(__DIR__ . '/../partials/foot.view.php'); ?>

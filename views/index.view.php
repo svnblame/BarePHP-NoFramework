@@ -1,7 +1,7 @@
 <?php
-    require('partials/head.php');
-    require('partials/nav.php');
-    require('partials/banner.php');
+    require('partials/head.view.php');
+    require('partials/nav.view.php');
+    require('partials/banner.view.php');
 ?>
 
 <main>
@@ -14,4 +14,4 @@
     </div>
 </main>
 
-<?php require('partials/foot.php'); ?>
+<?php require('partials/foot.view.php'); ?>
