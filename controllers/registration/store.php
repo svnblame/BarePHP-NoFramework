@@ -43,7 +43,7 @@ if ($result['cnt']) {
     view('registration/create.view.php', ['errors' => $errors]);
 } else {
     // If User not exist, create new User
-    $db->query('insert into users (email, password, first_name, last_name) values (:email, :password, :first_name, :last_name)', [
+    $db->query('insert into users (email, password, first_name, last_name, last_login_from) values (:email, :password, :first_name, :last_name, :last_login_from)', [
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
         'first_name' => $firstName,
