@@ -41,6 +41,10 @@ if ($user) {
     // Verify User provided password
     if (password_verify($password, $user['password'])) {
         // if they match, log them in
+        $db->query("update `users` set `last_login_at` = now(), `last_login_from` = '{$_SERVER['REMOTE_ADDR']}' where id = :id", [
+            'id' => $user['id']
+        ]);
+
         login($user);
 
         header('Location: /');
