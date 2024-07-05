@@ -36,13 +36,13 @@ function base_path($path = ''): string
 
 function view_path($path = ''): string
 {
-    return BASE_PATH . '/views/' . ($path ?: '');
+    return BASE_PATH . 'views/' . ($path ?: '');
 }
 
 function view(string $path, array $attributes = []): void
 {
     extract($attributes);
-    require base_path('views/' . $path);
+    require view_path($path);
 }
 
 function login(array $user): void

@@ -15,11 +15,13 @@ class Router
      */
     public function route(string $method, string $uri)
     {
+        $appConfig = require base_path('/config/app.php');
+
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
                 if ($route['middleware']) Middleware::resolve($route['middleware']);
 
-                return require base_path($route['controller']);
+                return require base_path($appConfig['controller_dir'] . $route['controller']);
             }
         }
 
