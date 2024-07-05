@@ -13,17 +13,13 @@ $dbConfig = $db::config();
 
 $currentUserId = $_SESSION['user']['id'];
 
-$disabled = $_ENV['APP_ENV'] === 'production';
+$note = $db->query('select user_id from notes where id = :id', ['id' => $_POST['id']])->get();
 
-if (! $disabled) {
-    $note = $db->query('select user_id from notes where id = :id', ['id' => $_POST['id']])->get();
+$ownerId = $note[0]['user_id'];
 
-    $ownerId = $note[0]['user_id'];
+authorize($ownerId === $currentUserId);
 
-    authorize($ownerId === $currentUserId);
-
-    $db->query('delete from notes where id = :id', [':id' => $_POST['id']]);
-}
+$db->query('delete from notes where id = :id', [':id' => $_POST['id']]);
 
 header('Location: /notes');
 exit();
