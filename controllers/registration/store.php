@@ -51,10 +51,10 @@ if ($result['cnt']) {
     ]);
 
     // @todo Refactor to use PDO::lastInsertId()
-    $user_id = $db->query('select id from users where email = :email', ['email' => $email])->find();
+    $matchedUser = $db->query('select id from users where email = :email', ['email' => $email])->find();
 
     $user = [
-        'userId' => $user_id['id'],
+        'id' => $matchedUser['id'],
         'email' => $email,
         'first_name' => $firstName,
         'last_name' => $lastName,
