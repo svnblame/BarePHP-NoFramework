@@ -48,6 +48,7 @@ if ($result['cnt']) {
         'password' => password_hash($password, PASSWORD_BCRYPT),
         'first_name' => $firstName,
         'last_name' => $lastName,
+        'last_login_from' => $_SERVER['REMOTE_ADDR'],
     ]);
 
     // @todo Refactor to use PDO::lastInsertId()
