@@ -2,7 +2,7 @@
 
 use KTS\src\Core\App;
 
-require __DIR__ . '/../../vendor/autoload.php';
+//require __DIR__ . '/../../vendor/autoload.php';
 
 try {
     $db = App::resolve('Core\Database');

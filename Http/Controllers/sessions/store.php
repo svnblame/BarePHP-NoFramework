@@ -2,7 +2,8 @@
 
 // check that the provided credentials match
 use KTS\src\Core\App;
-use KTS\src\Core\Validator;
+use KTS\src\Http\Forms\LoginForm;
+//use KTS\src\Core\Validator;
 
 try {
     $db = App::resolve('Core\Database');
@@ -16,20 +17,12 @@ $dbConfig = $db::config();
 $email = trim(strip_tags(htmlspecialchars($_POST['email'])));
 $password = trim(strip_tags(htmlspecialchars($_POST['password'])));
 
-// validate form inputs
-$errors = [];
-$authFailureMessage = 'Authentication failed';
+$form = new LoginForm();
 
-if (!Validator::email($email)) {
-    $errors['email'] = $authFailureMessage;
-}
-
-if (!Validator::string($password, $dbConfig['password_char_min'], $dbConfig['password_char_max'])) {
-    $errors['password'] = $authFailureMessage;
-}
-
-if (! empty($errors)) {
-    view('sessions/create.view.php', ['errors' => $errors]);
+if (! $form->validate($email, $password)) {
+    view('sessions/create.view.php', [
+        'errors' => $form->errors(),
+    ]);
 }
 
 // Validation has passed, now ensure the account exists
