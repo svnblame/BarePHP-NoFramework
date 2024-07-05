@@ -2,10 +2,6 @@
 
 use KTS\src\Core\App;
 
-if ('production' == $_ENV['APP_ENV']) view('index.view.php', [
-    'heading' => 'Home',
-]);
-
 try {
     $db = App::resolve('Core\Database');
 } catch (Exception $e) {

@@ -1,7 +1,6 @@
 <?php
 require(__DIR__ . '/../partials/head.view.php');
 require(__DIR__ . '/../partials/nav.view.php');
-$disabled = $_ENV['APP_ENV'] === 'production';
 ?>
 
 <main>
