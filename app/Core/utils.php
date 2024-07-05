@@ -44,3 +44,25 @@ function view(string $path, array $attributes = []): void
     extract($attributes);
     require base_path('views/' . $path);
 }
+
+function login(array $user): void
+{
+    $_SESSION['user'] = [
+        'logged_in' => true,
+        'id' => $user['id'],
+        'email' => $user['email'],
+        'first_name' => $user['first_name'],
+        'last_name' => $user['last_name'],
+    ];
+
+    session_regenerate_id(true);
+}
+
+function logout(): void
+{
+    $_SESSION = [];
+    session_destroy();
+
+    $cookieParams = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 3600, $cookieParams['path'], $cookieParams['domain'], $cookieParams['secure'], $cookieParams['httponly']);
+}

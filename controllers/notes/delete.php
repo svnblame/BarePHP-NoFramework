@@ -11,7 +11,7 @@ try {
 
 $dbConfig = $db::config();
 
-$currentUserId = (int) $dbConfig['test_user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $disabled = $_ENV['APP_ENV'] === 'production';
 

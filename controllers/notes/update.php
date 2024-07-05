@@ -18,7 +18,7 @@ try {
 $dbConfig = $db::config();
 $bodyCharMin = $dbConfig['note_body_char_min'];
 $bodyCharMax = $dbConfig['note_body_char_max'];
-$currentUserId = (int) $dbConfig['test_user_id'];
+$currentUserId = $_SESSION['user']['id'];
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',
