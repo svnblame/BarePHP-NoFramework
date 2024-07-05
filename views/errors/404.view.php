@@ -1,7 +1,7 @@
 <?php
-require(view_path('partials/head.php'));
-require(view_path('partials/nav.php'));
-require(view_path('partials/banner.php'));
+require(view_path('partials/head.view.php'));
+require(view_path('partials/nav.view.php'));
+require(view_path('partials/banner.view.php'));
 ?>
 
     <main>
@@ -13,4 +13,4 @@ require(view_path('partials/banner.php'));
         </div>
     </main>
 
-<?php require(view_path('partials/foot.php')); ?>
+<?php require(view_path('partials/foot.view.php')); ?>

@@ -12,7 +12,7 @@ try {
 
 $dbConfig = $db::config();
 
-$currentUserId = (int)$dbConfig['test_user_id'];
+$currentUserId = $_SESSION['user']['id'];
 $bodyCharMin = $dbConfig['note_body_char_min'];
 $bodyCharMax = $dbConfig['note_body_char_max'];
 
