@@ -22,5 +22,5 @@ $router->get('/note', 'notes/show.php')->only('auth');
 $router->delete('/note', 'notes/delete.php')->only('auth');
 $router->get('/note/create', 'notes/create.php')->only('auth');
 $router->get('/note/edit', 'notes/edit.php')->only('auth');
-$router->patch('/note/update', 'notes/update.php')->only('auth');
-$router->post('/note/create', 'notes/store.php')->only('auth');
+$router->patch('/note', 'notes/update.php')->only('auth');
+$router->post('/note', 'notes/store.php')->only('auth');
