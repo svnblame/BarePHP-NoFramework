@@ -45,7 +45,7 @@ function view(string $path, array $attributes = [])
     return require view_path($path);
 }
 
-#[NoReturn] function redirect(string $url): void
+#[NoReturn] function redirect(string $url)
 {
     header("Location: $url");
     exit();
