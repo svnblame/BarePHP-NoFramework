@@ -1,6 +1,8 @@
 <?php
 
-logout();
+use KTS\src\Core\Authenticator;
 
-header('Location: /sessions');
-exit();
+$auth = new Authenticator();
+$auth->logout();
+
+redirect('/sessions');
