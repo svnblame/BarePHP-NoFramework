@@ -51,11 +51,7 @@ class Authenticator
 
     public function logout(): void
     {
-        $_SESSION = [];
-        session_destroy();
-
-        $cookieParams = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 3600, $cookieParams['path'], $cookieParams['domain'], $cookieParams['secure'], $cookieParams['httponly']);
+        Session::destroy();
     }
 
     #[NoReturn] public function handleException(Exception $e): void

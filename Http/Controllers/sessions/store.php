@@ -1,5 +1,6 @@
 <?php
 
+use KTS\src\Core\Session;
 use KTS\src\Http\Forms\LoginForm;
 use KTS\src\Core\Authenticator;
 
@@ -22,4 +23,6 @@ if ($form->validate($email, $password)) {
     }
 }
 
-return view('sessions/create.view.php', ['errors' => $form->errors()]);
+Session::flash('errors', $form->errors());
+
+return redirect('/sessions');
