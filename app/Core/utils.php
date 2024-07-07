@@ -39,30 +39,14 @@ function view_path($path = ''): string
     return BASE_PATH . 'views/' . ($path ?: '');
 }
 
-function view(string $path, array $attributes = []): void
+function view(string $path, array $attributes = [])
 {
     extract($attributes);
-    require view_path($path);
+    return require view_path($path);
 }
 
-function login(array $user): void
+#[NoReturn] function redirect(string $url): void
 {
-    $_SESSION['user'] = [
-        'logged_in' => true,
-        'id' => $user['id'],
-        'email' => $user['email'],
-        'first_name' => $user['first_name'],
-        'last_name' => $user['last_name'],
-    ];
-
-    session_regenerate_id(true);
-}
-
-function logout(): void
-{
-    $_SESSION = [];
-    session_destroy();
-
-    $cookieParams = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 3600, $cookieParams['path'], $cookieParams['domain'], $cookieParams['secure'], $cookieParams['httponly']);
+    header("Location: $url");
+    exit();
 }

@@ -1,6 +1,7 @@
 <?php
 
 use KTS\src\Core\App;
+use KTS\src\Core\Authenticator;
 use KTS\src\Core\Validator;
 
 $email = trim(strip_tags(htmlspecialchars($_POST['email'])));
@@ -33,12 +34,16 @@ if (! empty($errors)) {
     view('registration/create.view.php', ['errors' => $errors]);
 }
 
-// check if account already exists
-$db = App::resolve('Core\Database');
+try {
+    $db = App::resolve('Core\Database');
+} catch (Exception $e) {
+    error_log(__FILE__ . ':' . __LINE__ . ' **Exception: ' . $e->getMessage());
+    abort(503);
+}
 
 $result = $db->query('select count(`id`) as cnt from users where email = :email', ['email' => $email])->find();
 
-if ($result['cnt']) {
+if ($result['cnt'] > 0) {
     $errors['email'] = 'Email address is already in use';
     view('registration/create.view.php', ['errors' => $errors]);
 } else {
@@ -51,27 +56,16 @@ if ($result['cnt']) {
         'last_login_from' => $_SERVER['REMOTE_ADDR'],
     ]);
 
-    // @todo Refactor to use PDO::lastInsertId()
-    $matchedUser = $db->query('select id from users where email = :email', ['email' => $email])->find();
-
-    $user = [
-        'id' => $matchedUser['id'],
-        'email' => $email,
-        'first_name' => $firstName,
-        'last_name' => $lastName,
-    ];
+    $auth = new Authenticator();
 
     // Log in the User
-    login($user);
+    try {
+        (new Authenticator)->attempt($email, $password);
+    } catch (Exception $e) {
+        error_log(__FILE__ . ':' . __LINE__ . ' **Exception: ' . $e->getMessage());
+        abort(503);
+    }
 
     // redirect to Home page
-    header('Location: /');
-    exit();
+    redirect('/');
 }
-
-    // If no, save to database
-
-    // login the new user
-
-    // redirect to home page
-

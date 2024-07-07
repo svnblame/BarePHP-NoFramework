@@ -28,7 +28,7 @@ class Router
         $this->abort();
     }
 
-    public function only($key)
+    public function only($key): static
     {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
 
