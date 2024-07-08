@@ -1,6 +1,6 @@
 <?php
 
-namespace KTS\src\Core;
+namespace Core;
 
 class Validator {
     public static function string(mixed $value, int $min = 1, int $max = INF): bool

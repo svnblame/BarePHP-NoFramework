@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'controller_dir' => 'Http/Controllers/',
+    'controller_dir' => 'app/Http/Controllers/',
 ];

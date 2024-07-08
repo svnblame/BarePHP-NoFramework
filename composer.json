@@ -4,9 +4,9 @@
       "ext-pdo": "*"
     },
     "autoload": {
-        "classmap": [
-            "app/Core",
-            "Http"
-        ]
+        "psr-4": {
+            "Core\\": "app/Core/",
+            "Http\\": "app/Http/"
+        }
     }
 }

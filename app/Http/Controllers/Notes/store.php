@@ -1,7 +1,7 @@
 <?php
 
-use KTS\src\Core\App;
-use KTS\src\Core\Validator;
+use Core\App;
+use Core\Validator;
 
 try {
     $db = App::resolve('Core\Database');

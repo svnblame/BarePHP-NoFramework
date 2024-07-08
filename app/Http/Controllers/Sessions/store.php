@@ -1,7 +1,11 @@
 <?php
 
-use KTS\src\Http\Forms\LoginForm;
-use KTS\src\Core\Authenticator;
+namespace Http\Controllers\Sessions;
+
+use Core\Session;
+use Exception;
+use Http\Forms\LoginForm;
+use Core\Authenticator;
 
 $form = LoginForm::validate($attributes = [
     'email' => trim(strip_tags(htmlspecialchars($_POST['email']))),
@@ -22,7 +26,10 @@ try {
         )->throw();
     }
 } catch (Exception $e) {
-    $auth->handleException($e);
+    Session::flash('errors', $e->errors);
+    Session::flash('old', $e->old);
+
+    return redirect('/sessions');
 }
 
 redirect('/');
