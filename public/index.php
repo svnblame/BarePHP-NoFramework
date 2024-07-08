@@ -2,6 +2,7 @@
 
 use KTS\src\Core\Router;
 use KTS\src\Core\Session;
+use KTS\src\Core\ValidationException;
 
 session_start();
 
@@ -19,6 +20,13 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-$router->route($method, $uri);
+try {
+    $router->route($method, $uri);
+} catch (ValidationException $e) {
+    Session::flash('errors', $e->errors);
+    Session::flash('old', $e->old);
+
+    return redirect($router->previousUrl());
+}
 
 Session::unflash();
