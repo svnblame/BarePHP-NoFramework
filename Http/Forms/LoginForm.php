@@ -2,6 +2,7 @@
 
 namespace KTS\src\Http\Forms;
 
+use KTS\src\Core\ValidationException;
 use KTS\src\Core\Validator;
 
 class LoginForm
@@ -10,19 +11,32 @@ class LoginForm
 
     protected array $errors = [];
 
-    public function validate(string $email, string $password): bool
+    public function __construct(public array $attributes = [])
     {
         $dbConfig = require(base_path('/config/database.php'));
 
-        if (!Validator::email($email)) {
+        if (!Validator::email($attributes['email'])) {
             $this->errors['email'] = self::AUTH_FAIL_MSG;
         }
 
-        if (!Validator::string($password, $dbConfig['password_char_min'], $dbConfig['password_char_max'])) {
+        if (!Validator::string($attributes['password'], $dbConfig['password_char_min'], $dbConfig['password_char_max'])) {
             $this->errors['password'] = self::AUTH_FAIL_MSG ;
         }
+    }
 
-        return empty($this->errors);
+    /**
+     * @throws ValidationException
+     */
+    public static function validate(array $attributes): LoginForm
+    {
+        $instance = new static($attributes);
+
+        return $instance->failed() ? $instance->throw() : $instance;
+    }
+
+    public function failed(): bool
+    {
+        return (bool) count($this->errors);
     }
 
     public function errors(): array
@@ -30,8 +44,18 @@ class LoginForm
         return $this->errors;
     }
 
-    public function error(string $field, string $message): void
+    public function error(string $field, string $message)
     {
         $this->errors[$field] = $message;
+
+        return $this;
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function throw(): void
+    {
+        ValidationException::throw($this->errors(), $this->attributes);
     }
 }
