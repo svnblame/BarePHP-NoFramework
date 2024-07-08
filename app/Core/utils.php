@@ -2,6 +2,7 @@
 
 use JetBrains\PhpStorm\NoReturn;
 use KTS\src\Core\Response;
+use KTS\src\Core\Session;
 
 function dump($value, $die = false): void
 {
@@ -49,4 +50,9 @@ function view(string $path, array $attributes = [])
 {
     header("Location: $url");
     exit();
+}
+
+function old(string $field, string $default = ''): string
+{
+    return Session::get('old')[$field] ?? $default;
 }
