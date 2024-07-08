@@ -72,6 +72,11 @@ class Router
         return $this->add('DELETE', $uri, $controller);
     }
 
+    public function previousUrl(): string
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
     #[NoReturn] protected function abort($code = 404): void
     {
         http_response_code($code);
