@@ -1,16 +1,16 @@
 <?php
 
-use KTS\src\Core\Router;
-use KTS\src\Core\Session;
-use KTS\src\Core\ValidationException;
-
-session_start();
+use Core\Router;
+use Core\Session;
+use Core\ValidationException;
 
 const BASE_PATH = __DIR__ . '/../';
 
-require BASE_PATH . 'app/Core/utils.php';
+session_start();
 
-require base_path('bootstrap.php');
+require BASE_PATH . 'bootstrap.php';
+
+require BASE_PATH . 'app/Core/utils.php';
 
 $router = new Router();
 

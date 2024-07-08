@@ -1,9 +1,9 @@
 <?php
 
-namespace KTS\src\Http\Forms;
+namespace Http\Forms;
 
-use KTS\src\Core\ValidationException;
-use KTS\src\Core\Validator;
+use Core\ValidationException;
+use Core\Validator;
 
 class LoginForm
 {

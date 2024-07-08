@@ -1,9 +1,8 @@
 <?php
 
-namespace KTS\src\Core;
+namespace Core;
 
 use Exception;
-use JetBrains\PhpStorm\NoReturn;
 
 class Authenticator
 {
@@ -52,11 +51,5 @@ class Authenticator
     public function logout(): void
     {
         Session::destroy();
-    }
-
-    #[NoReturn] public function handleException(Exception $e): void
-    {
-        error_log(__FILE__ . ':' . __LINE__ . ' **Exception: ' . $e->getMessage() . PHP_EOL . '**Trace: ' . $e->getTraceAsString());
-        abort(503);
     }
 }

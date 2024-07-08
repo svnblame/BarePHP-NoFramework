@@ -1,6 +1,6 @@
 <?php
 
-namespace KTS\src\Core\Middleware;
+namespace Core\Middleware;
 
 class Middleware
 {

@@ -1,8 +1,8 @@
 <?php
 
-use KTS\src\Core\App;
-use KTS\src\Core\Authenticator;
-use KTS\src\Core\Validator;
+use Core\App;
+use Core\Authenticator;
+use Core\Validator;
 
 $email = trim(strip_tags(htmlspecialchars($_POST['email'])));
 $password = trim(strip_tags(htmlspecialchars($_POST['password'])));

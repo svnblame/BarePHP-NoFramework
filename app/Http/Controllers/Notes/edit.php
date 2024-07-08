@@ -1,6 +1,6 @@
 <?php
 
-use KTS\src\Core\App;
+use Core\App;
 
 try {
     $db = App::resolve('Core\Database');

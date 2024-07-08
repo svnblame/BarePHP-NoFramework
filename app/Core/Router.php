@@ -1,10 +1,10 @@
 <?php
 
-namespace KTS\src\Core;
+namespace Core;
 
 use Exception;
 use JetBrains\PhpStorm\NoReturn;
-use KTS\src\Core\Middleware\Middleware;
+use Core\Middleware\Middleware;
 
 class Router
 {
