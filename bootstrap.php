@@ -1,11 +1,11 @@
 <?php
 
 use Dotenv\Dotenv;
-use KTS\src\Core\App;
-use KTS\src\Core\Container;
-use KTS\src\Core\Database;
+use Core\App;
+use Core\Container;
+use Core\Database;
 
-require __DIR__ . '/vendor/autoload.php';
+require BASE_PATH . '/vendor/autoload.php';
 
 $dotenv = Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();

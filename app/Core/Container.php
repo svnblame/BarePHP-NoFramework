@@ -1,6 +1,6 @@
 <?php
 
-namespace KTS\src\Core;
+namespace Core;
 
 class Container
 {

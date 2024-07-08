@@ -1,6 +1,6 @@
 <?php
 
-use KTS\src\Core\Authenticator;
+use Core\Authenticator;
 
 $auth = new Authenticator();
 $auth->logout();

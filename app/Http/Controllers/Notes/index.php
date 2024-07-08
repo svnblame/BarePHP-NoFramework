@@ -1,6 +1,6 @@
 <?php
 
-use KTS\src\Core\App;
+use Core\App;
 
 //require __DIR__ . '/../../vendor/autoload.php';
 

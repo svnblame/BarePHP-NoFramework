@@ -1,8 +1,8 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
-use KTS\src\Core\Response;
-use KTS\src\Core\Session;
+use Core\Response;
+use Core\Session;
 
 function dump($value, $die = false): void
 {
