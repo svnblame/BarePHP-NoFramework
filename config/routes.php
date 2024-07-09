@@ -10,8 +10,8 @@ $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
 
 // User Registration and Authentication
-$router->get('/register', 'registration/create.php')->only('guest');
-$router->post('/register', 'registration/store.php')->only('guest');
+$router->get('/register', 'Registration/create.php')->only('guest');
+$router->post('/register', 'Registration/store.php')->only('guest');
 $router->get('/sessions', 'Sessions/create.php')->only('guest');
 $router->post('/sessions', 'Sessions/store.php')->only('guest');
 $router->delete('/sessions', 'Sessions/delete.php')->only('auth');
