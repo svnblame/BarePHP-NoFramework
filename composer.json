@@ -1,7 +1,16 @@
 {
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
     "require": {
         "vlucas/phpdotenv": "^5.6",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "illuminate/collections": "^11.15"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.34"
     },
     "autoload": {
         "psr-4": {
